@@ -1,0 +1,35 @@
+include "cores/select.cal"
+
+include "std/conv.cal"
+include "std/io.cal"
+
+include "util.cal"
+include "verify.cal"
+include "cgi.cal"
+include "json.cal"
+
+parse_cgi
+
+let ptr JsonValue json
+content.elements content.length json_parse -> json
+
+#TEMP
+let u8 temp
+&stderr content.elements content.length file!
+'\n' -> temp
+&stderr &temp 1 file!
+
+c"Content-Type: application/json\n" print_str
+
+new_line
+
+let ptr JsonNumber msg_type
+let Array msg_type_a
+json c"type" json_get_field JsonValue.payload + @ -> msg_type
+msg_type.length 1 msg_type.number &msg_type_a create_array
+
+if &msg_type_a c"1" a= then
+	c"{\"type\":1}\n" print_str
+elseif &msg_type_a c"2" a= then
+	c"{\"type\":4,\"data\":{\"content\":\"Get Callisto'd\"}}\n" print_str
+end

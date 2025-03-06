@@ -1,0 +1,23 @@
+extern C i32 ed25519_verify addr addr usize addr end
+
+let array 32 u8 pubkey_data
+let Array pubkey
+32 1 &pubkey_data &pubkey create_array
+
+c"b9fef5220d785dff42c848ec9d86938ce55111a01b2f5777c2aff5d526cd6703" &pubkey hex_to_bytes
+
+func verify_message ptr Array timestamp ptr Array body ptr Array signature -> cell valid begin
+	let usize len
+	let addr buf
+
+	timestamp.length body.length + -> len
+	len alloc -> buf
+
+	buf timestamp.elements timestamp.length copy_mem
+	buf timestamp.length + body.elements body.length copy_mem
+
+	signature.elements buf len pubkey.elements ed25519_verify
+	1 =
+
+	buf free
+end

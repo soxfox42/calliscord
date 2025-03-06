@@ -1,0 +1,28 @@
+include "std/common.cal"
+
+func parse_nibble cell nibble -> cell value begin
+	if nibble '9' <= then
+		nibble '0' -
+	elseif nibble 'F' <= then
+		nibble 'A' - 10 +
+	else
+		nibble 'a' - 10 +
+	end
+end
+
+func error hex_to_bytes ptr Array in ptr Array out begin
+	if in.length 2 / out.length > then
+		c"Invalid hex string length" throw
+	end
+
+	let cell i
+	while i in.length < do
+		in.elements i +
+		dup
+		b@ parse_nibble 4 <<
+		swap
+		++ b@ parse_nibble or
+		out.elements i 1 >> + b!
+		i 2 + -> i
+	end
+end

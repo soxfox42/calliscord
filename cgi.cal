@@ -1,0 +1,40 @@
+include "std/env.cal"
+
+let Array content
+1 -> content.memberSize
+
+let array 64 u8 signature_data
+let Array signature
+64 1 &signature_data &signature create_array
+
+let Array timestamp
+
+func error expect_env ptr Array name ptr Array out begin
+	if name out get_env not then
+		c"Missing environment variable" throw
+	end
+end
+
+func read_body begin
+	content.length alloc -> content.elements
+	&stdin content.elements content.length file@
+end
+
+func parse_cgi begin
+	let Array buf
+	c"CONTENT_LENGTH" &buf expect_env
+	&buf parse_int -> content.length
+
+	read_body
+
+	c"HTTP_X_SIGNATURE_ED25519" &buf expect_env
+	&buf &signature hex_to_bytes
+
+	c"HTTP_X_SIGNATURE_TIMESTAMP" &timestamp expect_env
+
+	if &timestamp &content &signature verify_message not then
+		c"Status: 401\n\ninvalid request signature\n" print_str
+		0 exit
+	end
+end
+

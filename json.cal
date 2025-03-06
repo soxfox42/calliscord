@@ -1,0 +1,67 @@
+enum JsonType
+	String
+	Number
+	Object
+	Array
+	True
+	False
+	Null
+end
+
+struct JsonValue
+	addr payload
+	JsonType type
+end
+
+struct JsonString
+	addr string
+	usize length
+end
+
+struct JsonNumber
+	addr number
+	usize length
+end
+
+struct JsonObjectElement
+	ptr JsonString name
+	ptr JsonValue value
+	addr next
+end
+
+struct JsonObject
+	addr elements
+	usize length
+end
+
+extern C ptr JsonValue json_parse addr usize end
+
+func error json_assert_object ptr JsonValue value begin
+	if value.type JsonType.Object = not then
+		c"not an object" throw
+	end
+end
+
+func json_get_field ptr JsonValue obj ptr Array name -> ptr JsonValue value begin
+	obj json_assert_object
+
+	let ptr JsonObjectElement cur
+	let Array temp
+	1 -> temp.memberSize
+	let usize i
+
+	obj.payload JsonObject.elements + @ -> cur
+
+	while cur do
+		cur.name JsonString.string + @ -> temp.elements
+		cur.name JsonString.length + @ -> temp.length
+
+		if name &temp a= then
+			cur.value return
+		end
+
+		cur.next -> cur
+	end
+
+	0
+end

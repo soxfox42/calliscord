@@ -1,0 +1,6 @@
+/c_lib/.cache
+/c_lib/build/
+/c_lib/ed25519/
+/c_lib/json.h/
+/discord
+/lib*.a
