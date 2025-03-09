@@ -7,29 +7,64 @@ include "util.cal"
 include "verify.cal"
 include "cgi.cal"
 include "json.cal"
+include "discord.cal"
+include "take.cal"
+
+func print_escaped ptr Array str begin
+	let cell i
+	let cell c
+	while i str.length < do
+		i str a@ -> c
+		if c '"' = then
+			c"\\\"" print_str
+		elseif c '\\' = then
+			c"\\\\" print_str
+		else
+			c print_ch
+		end
+		i ++ -> i
+	end
+end
+
 
 parse_cgi
 
 let ptr JsonValue json
 content.elements content.length json_parse -> json
 
-#TEMP
-let u8 temp
-&stderr content.elements content.length file!
-'\n' -> temp
-&stderr &temp 1 file!
-
 c"Content-Type: application/json\n" print_str
 
 new_line
 
-let ptr JsonNumber msg_type
-let Array msg_type_a
-json c"type" json_get_field JsonValue.payload + @ -> msg_type
-msg_type.length 1 msg_type.number &msg_type_a create_array
+let cell msg_type
+json discord_get_type -> msg_type
 
-if &msg_type_a c"1" a= then
+if msg_type 1 = then
 	c"{\"type\":1}\n" print_str
-elseif &msg_type_a c"2" a= then
-	c"{\"type\":4,\"data\":{\"content\":\"Get Callisto'd\"}}\n" print_str
+elseif msg_type 2 = then
+	let Array msg_command
+	json &msg_command discord_get_command
+
+	if &msg_command c"bytesum" a= then
+		let Array input
+		json c"input" &input discord_get_option_str
+
+		let cell i
+		let cell sum
+		while i input.length < do
+			i &input a@ sum + -> sum
+			i ++ -> i
+		end
+
+		c"{\"type\":4,\"data\":{\"content\":\"The sum of the bytes in \\\"" print_str
+		&input print_escaped
+		c"\\\" is: " print_str
+		sum print_dec
+		c"\"}}\n" print_str
+	elseif &msg_command c"take" a= then
+		get_epoch_time random_seed
+		c"{\"type\":4,\"data\":{\"content\":\"" print_str
+		take
+		c"\"}}\n" print_str
+	end
 end

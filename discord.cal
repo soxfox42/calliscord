@@ -1,0 +1,42 @@
+func discord_get_type ptr JsonValue json -> cell type begin
+	let ptr JsonNumber json_type
+	let Array arr_type
+	json c"type" json_get_field JsonValue.payload + @ -> json_type
+	json_type.length 1 json_type.number &arr_type create_array
+
+	&arr_type parse_int
+end
+
+func discord_get_command ptr JsonValue json ptr Array command begin
+	let ptr JsonString json_command
+	json c"data" json_get_field c"name" json_get_field JsonValue.payload + @ -> json_command
+	json_command.length 1 json_command.string command create_array
+end
+
+func error discord_get_option_str ptr JsonValue json ptr Array name ptr Array value begin
+	let ptr JsonValue json_options
+	json c"data" json_get_field c"options" json_get_field -> json_options
+
+	if json_options.type JsonType.Array = not then
+		c"Invalid options" throw
+	end
+
+	let ptr JsonArrayElement el
+	json_options.payload JsonArray.elements + @ -> el
+
+	while el do
+		let ptr JsonString json_name
+		let Array this_name
+		el.value c"name" json_get_field JsonValue.payload + @ -> json_name
+		json_name.length 1 json_name.string &this_name create_array
+
+		if &this_name name a= then
+			let ptr JsonString json_value
+			el.value c"value" json_get_field JsonValue.payload + @ -> json_value
+			json_value.length 1 json_value.string value create_array
+			return
+		end
+
+		el.next -> el
+	end
+end

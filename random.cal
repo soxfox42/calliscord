@@ -1,0 +1,24 @@
+const LCG_A 48271
+const LCG_M 0x7FFFFFFF
+
+let cell _lcg_state
+
+func random_update begin
+	_lcg_state LCG_A * LCG_M % -> _lcg_state
+end
+
+func random_next -> cell value begin
+	random_update _lcg_state
+end
+
+func random_seed cell seed begin
+	seed -> _lcg_state
+	let cell i
+	while i 100 < do
+		random_update i ++ -> i
+	end
+end
+
+func random_int cell range -> cell value begin
+	random_next range %
+end

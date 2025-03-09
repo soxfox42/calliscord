@@ -1,4 +1,5 @@
 include "std/common.cal"
+include "std/env.cal"
 
 func parse_nibble cell nibble -> cell value begin
 	if nibble '9' <= then
@@ -26,3 +27,10 @@ func error hex_to_bytes ptr Array in ptr Array out begin
 		i 2 + -> i
 	end
 end
+
+func error expect_env ptr Array name ptr Array out begin
+	if name out get_env not then
+		c"Missing environment variable" throw
+	end
+end
+

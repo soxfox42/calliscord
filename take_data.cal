@@ -1,0 +1,24 @@
+let ptr Array languages
+let ptr Array libraries
+let ptr Array people
+let ptr Array companies
+let ptr Array issues
+let ptr Array takes
+
+c"C\0C++\0D\0V\0Fortran\0Verilog\0Prolog\0Forth\0Go\0Rust\0Zig\0Porth\0Callisto\0YSL\0YSL-R\0YSL-C\0Bash\0Batch\0Haskell\0OCaml\0Python\0JavaScript\0Ruby\0HTML\0CSS\0Markdown\0PowerShell\0Brainfuck\0Malbolge\0Jupyter Notebook\0Vue\0Vala\0uxntal\0Concata\0APL\0WPL\0Modal\0Carbon\0Nim\0" -> languages
+const languages_len 39
+
+c"ncurses\0SDL2\0asyncio\0vibe.d\0discord.js\0discord.py\0Unity\0Unreal Engine\0Rails\0stb\0Godot\0YSL-M\0" -> libraries
+const libraries_len 12
+
+c"Bill Gates\0Linus Torvalds\0Brendan Eich\0Richard Stallman\0Bjarne Stroustrup\0Ada Lovelace\0Alan Turing\0John von Neumann\0Elon Musk\0Yeti\0soxfox\0" -> people
+const people_len 11
+
+c"Microsoft\0Google\0Meta\0Shopify\0YouTube\0Discord\0NASA\0" -> companies
+const companies_len 7
+
+c"memory safety\0race condition\0goto statement\0segmentation fault\0" -> issues
+const issues_len 4
+
+c"Did you know that $L is the worst programming language in the world?\0Did you know that $L is the best programming language in the world?\0Why are schools not teaching $A? We're setting our kids up to fail.\0$L users couldn't even print Hello World in $L.\0$A is toxic for humanity. This is not an opinion, it's an absolute truth.\0$A users should be sent to prison for life.\0$A users don't understand programming.\0I have been coding in $L for $N years and I still do not understand why people use $A.\0$A fans are smarter than the average programmers.\0I'm sick of these pseudo-intellectual $A users, sitting in their ivory towers, looking down on the rest of us.\0The $A community is toxic.\0The fact that we're still using $A in 2024 is a problem.\0Average $A user vs average $A enjoyer.\0Every tech stack should include $A.\0People may disagree with the things I say, but I'd like to remind the haters that I have worked on a one-billion line $L codebase.\0$A is a $I disaster waiting to happen.\0I have been working with $A for over $N years, AMA.\0Well written $L is what heaven looks like.\0$P was the first true computer scientist.\0$P, inventor of $A is who we should all aspire to be like.\0$A was pioneered by $P\0Coding in $L is mental torture.\0I have a PhD in Computer Science and I'm still not sure how $A works.\0Honestly, $A fans are insufferable\0Everyone should learn $L as their first language.\0$L is not a programming language. Change my mind.\0AITA from banning my GF from using $L?\0I just started a new job at $C. My boss, $P just told me to refactor 58235 lines of $L. Kill me.\0$P debunked $A a long time ago.\0$A fans are quickly taking over the tech world and that's good.\0I'm genuinely surprised to hear that there are programmers who use $A\0I'm genuinely surprised to hear that there are programmers who don't use $A\0IMO, $P needs to start looking at $A.\0Oh, your code is written in $L? Sorry, I don't speak stupid.\0I think I'm addicted to working with $A. Does anyone else feel the same?\0$A is just $A mixed with $A.\0I had an interviewer laugh in my face when I said I use $A.\0I have an irrational hatred for $A.\0I just purchased the domain name $A.net. I'm going to make a fortune.\0$A fans don't deserve to be in tech.\0If Jesus was alive today, he would be using $A.\0I love $P so much!\0We should really stop listening to $P. They told us to use $A, after all.\0I'm not an $A fan, but I'm a $A fan.\0Coding in $L is like walking over hot coals.\0After just a few hours, I've optimised my $L codebase $Nx. Writing up a blog post as we speak.\0Where are all the $A jobs? Are people really looking for $A?\0I just donated $$2348 to $P's Patreon. They deserve it.\0Did you know $L is one of the oldest programming languages in the world?\0$C uses $A so it must be good.\0$A doesn't need $A, it's perfect already.\0Gen Z kids don't understand $A.\0The perfect programming language is $L mixed with $L.\0One of my greatest achievements is becoming a moderator of r/$A.\0I'm looking for a new job. I'm not sure if I should apply to $C. I've heard they're $A haters.\0Started learning $L yesterday. Already built an AI that can solve $I. Should I drop out of school?\0" -> takes
+const takes_len 56

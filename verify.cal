@@ -1,10 +1,12 @@
 extern C i32 ed25519_verify addr addr usize addr end
 
+let Array pubkey_hex
 let array 32 u8 pubkey_data
 let Array pubkey
 32 1 &pubkey_data &pubkey create_array
 
-c"b9fef5220d785dff42c848ec9d86938ce55111a01b2f5777c2aff5d526cd6703" &pubkey hex_to_bytes
+c"DISCORD_PUBLIC_KEY" &pubkey_hex expect_env
+&pubkey_hex &pubkey hex_to_bytes
 
 func verify_message ptr Array timestamp ptr Array body ptr Array signature -> cell valid begin
 	let usize len

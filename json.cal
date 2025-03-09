@@ -34,6 +34,16 @@ struct JsonObject
 	usize length
 end
 
+struct JsonArrayElement
+	ptr JsonValue value
+	addr next
+end
+
+struct JsonArray
+	addr elements
+	usize length
+end
+
 extern C ptr JsonValue json_parse addr usize end
 
 func error json_assert_object ptr JsonValue value begin

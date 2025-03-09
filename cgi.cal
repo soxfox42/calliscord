@@ -1,5 +1,3 @@
-include "std/env.cal"
-
 let Array content
 1 -> content.memberSize
 
@@ -8,12 +6,6 @@ let Array signature
 64 1 &signature_data &signature create_array
 
 let Array timestamp
-
-func error expect_env ptr Array name ptr Array out begin
-	if name out get_env not then
-		c"Missing environment variable" throw
-	end
-end
 
 func read_body begin
 	content.length alloc -> content.elements

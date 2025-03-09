@@ -1,0 +1,84 @@
+include "std/nullterm.cal"
+
+include "random.cal"
+include "take_data.cal"
+
+func get_nth usize n ptr Array blob ptr Array nth begin
+	let addr data
+	let cell m
+
+	blob.elements -> data
+
+	while m n < do
+		data ntstr_length data + ++ -> data
+		m ++ -> m
+	end
+
+	data -> nth.elements
+	1 -> nth.memberSize
+	data ntstr_length -> nth.length
+end
+
+func print_nth usize n ptr Array blob begin
+	let Array nth
+	n blob &nth get_nth
+	&nth print_str
+end
+
+func random_language begin
+	languages_len random_int languages print_nth
+end
+
+func random_library begin
+	libraries_len random_int libraries print_nth
+end
+
+func random_person begin
+	people_len random_int people print_nth
+end
+
+func random_company begin
+	companies_len random_int companies print_nth
+end
+
+func random_issue begin
+	issues_len random_int issues print_nth
+end
+
+func take begin
+	let Array take_pat
+	takes_len random_int takes &take_pat get_nth
+
+	let cell i
+	let cell c
+	while i take_pat.length < do
+		i &take_pat a@ -> c
+		i ++ -> i
+		if c '$' = then
+			i &take_pat a@ -> c
+			i ++ -> i
+
+			if c 'A' = then
+				if 2 random_int then
+					random_language
+				else
+					random_library
+				end
+			elseif c 'P' = then
+				random_person
+			elseif c 'L' = then
+				random_language
+			elseif c 'C' = then
+				random_company
+			elseif c 'N' = then
+				21 random_int 5 + print_dec
+			elseif c 'I' = then
+				random_issue
+			elseif c '$' = then
+				c print_ch
+			end
+		else
+			c print_ch
+		end
+	end
+end
