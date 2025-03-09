@@ -7,10 +7,10 @@
 
 At the time of writing, this is the **only** Discord bot written in [Callisto](https://callisto.mesyeti.uk/), which also makes it the **best** Discord bot written in Callisto. There is also a not-insignificant chance this is the only Discord bot powered by [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface) - I haven't found evidence of others yet, but feel free to open an issue if you find one.
 
-# Commands
+## Commands
 
-**/bytesum <input>**
+### /bytesum <input>
 Calculates the sum of the byte values in the input.
 
-**/take**
+### /take
 Generates a hot take.
