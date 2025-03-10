@@ -3,7 +3,7 @@ languages = [
     "Porth", "Callisto", "YSL", "YSL-R", "YSL-C", "Bash", "Batch", "Haskell", "OCaml",
     "Python", "JavaScript", "Ruby", "HTML", "CSS", "Markdown", "PowerShell", "Brainfuck",
     "Malbolge", "Jupyter Notebook", "Vue", "Vala", "uxntal", "Concata", "APL", "WPL",
-    "Modal", "Carbon", "Nim"
+    "Modal", "Carbon", "Nim", "if-goto"
 ]
 libraries = [
     "ncurses", "SDL2", "asyncio", "vibe.d", "discord.js", "discord.py", "Unity",

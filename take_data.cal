@@ -5,8 +5,8 @@ let ptr Array companies
 let ptr Array issues
 let ptr Array takes
 
-c"C\0C++\0D\0V\0Fortran\0Verilog\0Prolog\0Forth\0Go\0Rust\0Zig\0Porth\0Callisto\0YSL\0YSL-R\0YSL-C\0Bash\0Batch\0Haskell\0OCaml\0Python\0JavaScript\0Ruby\0HTML\0CSS\0Markdown\0PowerShell\0Brainfuck\0Malbolge\0Jupyter Notebook\0Vue\0Vala\0uxntal\0Concata\0APL\0WPL\0Modal\0Carbon\0Nim\0" -> languages
-const languages_len 39
+c"C\0C++\0D\0V\0Fortran\0Verilog\0Prolog\0Forth\0Go\0Rust\0Zig\0Porth\0Callisto\0YSL\0YSL-R\0YSL-C\0Bash\0Batch\0Haskell\0OCaml\0Python\0JavaScript\0Ruby\0HTML\0CSS\0Markdown\0PowerShell\0Brainfuck\0Malbolge\0Jupyter Notebook\0Vue\0Vala\0uxntal\0Concata\0APL\0WPL\0Modal\0Carbon\0Nim\0if-goto\0" -> languages
+const languages_len 40
 
 c"ncurses\0SDL2\0asyncio\0vibe.d\0discord.js\0discord.py\0Unity\0Unreal Engine\0Rails\0stb\0Godot\0YSL-M\0" -> libraries
 const libraries_len 12
